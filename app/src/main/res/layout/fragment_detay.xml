@@ -22,12 +22,13 @@
         android:layout_width="325dp"
         android:layout_height="387dp"
         android:layout_marginTop="29dp"
-        android:src="@drawable/PulpFiction"
+        android:src="@drawable/pulp"
         app:layout_constraintBottom_toTopOf="@+id/tvFilmAdi"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbarDetay" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbarDetay"
+        app:srcCompat="@drawable/pulp" />
 
     <TextView
         android:id="@+id/tvFiyat"
