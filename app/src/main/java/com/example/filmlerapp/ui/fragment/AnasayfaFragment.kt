@@ -6,39 +6,33 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.filmlerapp.R
 import com.example.filmlerapp.data.entity.Filmler
 import com.example.filmlerapp.databinding.FragmentAnasayfaBinding
 import com.example.filmlerapp.ui.adapter.FilmlerAdapter
+import com.example.filmlerapp.ui.viewModel.AnasayfaViewModel
 
 
 class AnasayfaFragment : Fragment() {
     private lateinit var binding: FragmentAnasayfaBinding
+    private lateinit var viewModel: AnasayfaViewModel
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding=DataBindingUtil.inflate(inflater,R.layout.fragment_anasayfa ,container, false)
 
         binding.anasayfaToolbarBaslik="Filmler"
 
-        val filmlerListesi=ArrayList<Filmler>()
-        val f1=Filmler(1,"Pulp Fiction","pulp",24)
-        val f2=Filmler(2,"Sil Baştan","eternal",28)
-        val f3=Filmler(3,"LOTR","lotr",32)
-        val f4=Filmler(4,"Forrest Gump","forrest",36)
-        val f5=Filmler(5,"American Pyscho","american",20)
-        val f6=Filmler(6,"Saksı Olmanın","perks",16)
-        filmlerListesi.add(f1)
-        filmlerListesi.add(f2)
-        filmlerListesi.add(f3)
-        filmlerListesi.add(f4)
-        filmlerListesi.add(f5)
-        filmlerListesi.add(f6)
-
-        val filmlerAdapter=FilmlerAdapter(requireContext(),filmlerListesi)
-        binding.filmlerAdapter=filmlerAdapter
-
-
-
+        viewModel.filmListesi.observe(viewLifecycleOwner){
+            val filmlerAdapter=FilmlerAdapter(requireContext(),it)
+            binding.filmlerAdapter=filmlerAdapter
+        }
         return binding.root
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val temp:AnasayfaViewModel by viewModels()
+        viewModel=temp
     }
 }

@@ -3,8 +3,10 @@ package com.example.filmlerapp.ui.adapter
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
+import com.example.filmlerapp.R
 import com.example.filmlerapp.data.entity.Filmler
 import com.example.filmlerapp.databinding.CardTasarimBinding
 import com.example.filmlerapp.ui.fragment.AnasayfaFragmentDirections
@@ -15,7 +17,7 @@ class FilmlerAdapter(var mContext:Context,var filmlerListesi:List<Filmler>) :Rec
     inner class CardTasarimHolder(var tasarim:CardTasarimBinding):RecyclerView.ViewHolder(tasarim.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardTasarimHolder {
-        val binding=CardTasarimBinding.inflate(LayoutInflater.from(mContext),parent,false)
+        val binding:CardTasarimBinding=DataBindingUtil.inflate(LayoutInflater.from(mContext),R.layout.card_tasarim,parent,false)
         return CardTasarimHolder(binding)
     }
 
@@ -24,8 +26,7 @@ class FilmlerAdapter(var mContext:Context,var filmlerListesi:List<Filmler>) :Rec
         val t=holder.tasarim
 
         t.imageView.setImageResource(mContext.resources.getIdentifier(film.resim,"drawable",mContext.packageName))
-        t.textViewFiyat.text="${film.fiyat} ₺"
-        t.textViewFilmAdi.text="${film.ad}"
+        t.filmNesnesi=film
         t.cardViewFilm.setOnClickListener{
             val gecis=AnasayfaFragmentDirections.detayGecis(film=film)
             Navigation.findNavController(it).navigate(gecis)
