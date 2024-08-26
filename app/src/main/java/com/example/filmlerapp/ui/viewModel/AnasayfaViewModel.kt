@@ -19,8 +19,6 @@ class AnasayfaViewModel @Inject constructor(var frepo: FilmlerRepository) : View
     }
 
     fun filmleriYukle(){
-        CoroutineScope(Dispatchers.Main).launch {
-            filmListesi.value=frepo.filmleriYukle()
-        }
+        filmListesi=frepo.filmleriYukle()
     }
 }

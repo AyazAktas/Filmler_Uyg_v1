@@ -61,6 +61,7 @@ dependencies {
     ksp("androidx.hilt:hilt-compiler:1.0.0")
     implementation(platform("com.google.firebase:firebase-bom:33.1.2"))
     implementation("com.google.firebase:firebase-firestore:25.0.0")
+    implementation("com.github.bumptech.glide:glide:4.13.2")
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
     testImplementation(libs.junit)
